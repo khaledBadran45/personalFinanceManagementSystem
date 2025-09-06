@@ -17,7 +17,6 @@ import { BudgetsService } from '../../high-level-components/budgets/budgets.serv
 import { BudgetFormComponent } from '../../high-level-components/budgets/budget-form/budget-form.component';
 import { TransactionsComponent } from '../transactions/transactions.component';
 import { TransactionsService } from '../../high-level-components/transactions/transactions.service';
-import { transaction } from '../../low-level-components/transcation/transcation.component';
 @Component({
   selector: 'app-budget-card',
   imports: [

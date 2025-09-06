@@ -1,0 +1,20 @@
+<div *ngFor="let transaction of transactions "
+  class="gap-5 border-b py-4 grid lg:grid-cols-5 grid-cols-2 justify-items-center items-center">
+  <li class="justify-self-start lg:col-span-2 flex border-bottom">
+    <img src="1.jpg" class="rounded-full w-11" />
+    <div class="ps-3 flex flex-col justify-center">
+      <p class="font-semibold text-sm">{{ transaction.sender }}</p>
+      <p class="text-g text-xs lg:hidden">{{ transaction.category }}</p>
+    </div>
+  </li>
+  <li class="hidden text-g lg:block">{{ transaction.category }}</li>
+  <li class="hidden lg:block text-sm text-g">
+    {{ transaction.date | date }}
+  </li>
+  <li class="justify-self-end text-sm font-bold text-end">
+    {{ transaction.amount | currency }}
+    <p class="text-g font-light text-sm lg:hidden">
+      {{ transaction.date | date }}
+    </p>
+  </li>
+</div>

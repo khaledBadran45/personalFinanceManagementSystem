@@ -11,7 +11,6 @@ import { PotFormComponent } from "./pot-form/pot-form.component";
   selector: 'app-pots',
   imports: [
     ContainerComponent,
-    ButtonPopUpComponent,
     CommonModule,
     PotCardComponent,
     PopUPComponent,

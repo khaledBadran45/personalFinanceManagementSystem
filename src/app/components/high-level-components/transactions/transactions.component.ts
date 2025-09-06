@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '../../features-components/pagination/pagination.component';
 import { pagination } from '../../features-components/pagination/pagination.model';
 import { TransactionsMenuComponent } from '../../low-level-components/transactions-menu/transactions-menu.component';
+import { TransactionsListComponent } from "../../features-components/transactions-list/transactions-list.component";
 @Component({
   selector: 'app-transactions',
   imports: [
@@ -15,7 +16,8 @@ import { TransactionsMenuComponent } from '../../low-level-components/transactio
     CommonModule,
     PaginationComponent,
     TransactionsMenuComponent,
-  ],
+    TransactionsListComponent
+],
   templateUrl: './transactions.component.html',
   styleUrl: './transactions.component.scss',
 })
@@ -60,7 +62,7 @@ export class TransactionsComponent implements OnInit {
     }
   }
   getTransactionList() {
-    return this._transactionsService.transactionsList$;
+      return this._transactionsService.transactionsList$;
   }
   get randomNumber() {
     return Math.floor(Math.random() * 8);

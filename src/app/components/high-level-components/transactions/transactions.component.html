@@ -2,36 +2,24 @@
   Transactions
   <div class="p-7 rounded-lg bg-white" ngProjectAs="page">
     <div class="grid grid-cols-4 gap-5">
-      <app-input
-        (dataEntered)="onDataEntered($event)"
-        class="md:col-span-2 col-span-3"
-        [input]="{ title: 'Transaction', pleceholder: 'Search transaction' }"
-      />
-      <div
-        class="col-span-1 md:col-span-2 gap-5 grid grid-cols-2 items-center justify-items-end"
-      >
-        <app-transactions-menu
-          (select)="onSelectSortingOption($event)"
-          [dropdown]="{ title: 'Sort By', id: 'sad45', options: sortByOptions }"
-        >
+      <app-input (dataEntered)="onDataEntered($event)" class="md:col-span-2 col-span-3"
+        [input]="{ title: 'Transaction', pleceholder: 'Search transaction' }" />
+      <div class="col-span-1 md:col-span-2 gap-5 grid grid-cols-2 items-center justify-items-end">
+        <app-transactions-menu (select)="onSelectSortingOption($event)"
+          [dropdown]="{ title: 'Sort By', id: 'sad45', options: sortByOptions }">
           <img src="sort_by.svg" />
         </app-transactions-menu>
-        <app-transactions-menu
-          (select)="onSelectCattegOption($event)"
-          [dropdown]="{
+        <app-transactions-menu (select)="onSelectCattegOption($event)" [dropdown]="{
             title: 'Category',
             id: 'Catsad45',
             options: categOptions
-          }"
-        >
+          }">
           <img src="category.svg" />
         </app-transactions-menu>
       </div>
     </div>
     <ul>
-      <div
-        class="thead gap-5 grid lg:grid-cols-5 pt-7 grid-cols-2 justify-items-center"
-      >
+      <div class="thead gap-5 grid lg:grid-cols-5 pt-7 grid-cols-2 justify-items-center">
         <li class="text-g justify-self-start lg:col-span-2">
           Recipient / Sender
         </li>
@@ -41,10 +29,9 @@
       </div>
       <div class="tbody">
         <!-- rows -->
-        <div
-          *ngFor="let transaction of getTransactionList() | async"
-          class="gap-5 border-b py-4 grid lg:grid-cols-5 grid-cols-2 justify-items-center items-center"
-        >
+         <app-transactions-list [transactions]="getTransactionList() | async"  />  
+               <!-- <div *ngFor="let transaction of getTransactionList() | async"
+          class="gap-5 border-b py-4 grid lg:grid-cols-5 grid-cols-2 justify-items-center items-center">
           <li class="justify-self-start lg:col-span-2 flex border-bottom">
             <img src="1.jpg" class="rounded-full w-11" />
             <div class="ps-3 flex flex-col justify-center">
@@ -62,7 +49,7 @@
               {{ transaction.date | date }}
             </p>
           </li>
-        </div>
+        </div> -->
         <app-pagination (changePage)="onChangePage($event)" />
       </div>
     </ul>

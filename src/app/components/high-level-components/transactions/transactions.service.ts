@@ -6,8 +6,8 @@ import { dummyTranscations } from './dummy_transcations';
   providedIn: 'root',
 })
 export class TransactionsService {
-  src = dummyTranscations;
-  private transcationsSubject: BehaviorSubject<any> = new BehaviorSubject([]);
+  src: Transaction[] = dummyTranscations;
+  private transcationsSubject = new BehaviorSubject<Transaction[]>([]);
   transactionsList$: Observable<Transaction[]> =
     this.transcationsSubject.asObservable();
 
@@ -37,13 +37,11 @@ export class TransactionsService {
     // search about the transactions and in the dummy array database ;
 
     // console.log();
-    return dummyTranscations.filter((tr) => tr.category== budgetTitle);
+    return dummyTranscations.filter((tr) => tr.category == budgetTitle);
   }
-
   getDefultTransactions() {
     this.transcationsSubject.next(dummyTranscations);
   }
-
   // sortBY the user going to sort the Transactions asc or desc or latest or oldest or alphabitically ;
   sortBY(
     sortType: 'asc' | 'desc' = 'asc',
@@ -99,7 +97,7 @@ export class TransactionsService {
   // get a list of items debending on the amount that effect by the per page :param .
   getList(currentPage: number = 1) {
     let start = currentPage;
-    let next = start *10;
+    let next = start * 10;
     if (currentPage == 1) {
       this.transcationsSubject.next(...[dummyTranscations.slice(0, 10)]);
     } else if (currentPage == 2) {
@@ -110,6 +108,7 @@ export class TransactionsService {
       );
     }
   }
+  
 }
 /*
  * when user change the count of needed items per page we need to configure the src of the these items

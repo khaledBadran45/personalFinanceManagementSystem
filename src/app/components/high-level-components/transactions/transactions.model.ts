@@ -7,5 +7,5 @@ export interface Transaction {
   sender: string;
   category: string;
   date: Date;
-  amount: number;
+  amount: string;
 }

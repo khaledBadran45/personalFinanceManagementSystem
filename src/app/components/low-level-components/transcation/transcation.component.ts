@@ -1,12 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-export interface transaction {
-  path: string;
-  sender: string;
-  category: string;
-  date: Date;
-  amount: number;
-}
+import { Transaction } from '../../high-level-components/transactions/transactions.model';
 @Component({
   selector: 'app-transcation',
   imports: [CommonModule],
@@ -14,5 +8,5 @@ export interface transaction {
   styleUrl: './transcation.component.scss',
 })
 export class TranscationComponent {
-  trs = input.required<transaction>();
+  trs = input.required<Transaction>();
 }
