@@ -1,0 +1,51 @@
+<div class="dropdown mt-3">
+  <h1
+    *ngIf="this.dropdown().title"
+    class="text-xs hidden md:block capitalize font-bold tracking-wide pb-1 text-gray-700"
+  >
+    {{ dropdown().title }}
+  </h1>
+  <input
+    type="checkbox"
+    #checkedInp
+    class="hidden select"
+    [id]="'select-' + dropdown().id"
+  />
+  <label
+    [for]="'select-' + dropdown().id"
+    class="labelSelection tracking-wide hidden md:flex p-3"
+  >
+    <div class="selected">
+      <!-- case user not selected an option yet -->
+      <p class="text-sm font-light text-black">please pick an option</p>
+    </div>
+    <div class="caret"></div>
+  </label>
+  <label [for]="'select-' + dropdown().id" class="block md:hidden">
+    <ng-content />
+  </label>
+  <ul class="menu">
+    <li
+      class="my-1"
+      *ngFor="let option of dropdown().options"
+      [class.active]="isSelected(option.title)"
+      (click)="selectOption(option.title)"
+    >
+      <div class="flex items-center justify-between">
+        <div class="flex justify-start items-center">
+          <div
+            [style.backgroundColor]="false ? 'black' : option.id"
+            class="w-5 h-5 rounded-full me-2"
+          ></div>
+          <p class="text-sm p-1 capitalize">{{ option.title }}</p>
+        </div>
+        <p
+          *ngIf="isOptionUsed(option.title)"
+          class="text-gray-600 font-medium text-xs"
+        >
+          Already used
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>

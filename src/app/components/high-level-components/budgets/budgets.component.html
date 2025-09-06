@@ -1,0 +1,52 @@
+<app-container>
+  <div>
+    <div class="flex justify-between">
+      <h1>Budgets</h1>
+      <button
+        (click)="popUpVisibililty = true"
+        class="text-sm p-4 bg-black hover:bg-zinc-600 transition-all rounded-md text-white"
+      >
+        + Add new budget
+      </button>
+    </div>
+    @if(popUpVisibililty){
+    <app-pop-up
+      (closePopUp)="this.popUpVisibililty = false"
+      [popUpContent]="{
+        title: 'Budget',
+        desc: 'Choose a category to set a spending budget. These categories can help you monitor spending.'
+      }"
+    >
+      <app-budget-form
+        (closePopUp)="this.popUpVisibililty = false"
+        (sub)="onSubmitBudget($event)"
+        #budget
+      />
+    </app-pop-up>
+    }
+    <!-- <div
+      buttonPopUP
+      (add)="onAdd($event)"
+      [popUpContent]="{
+        title: 'Budget',
+        desc: 'Choose a category to set a spending budget. These categories can help you monitor spending.'
+      }"
+    ></div> -->
+  </div>
+  <div class="rounded-lg" ngProjectAs="page">
+    <div class="grid grid-cols-7 gap-5">
+      <div class="col-span-3">
+        <app-chart />
+      </div>
+      <div class="col-span-4 gap-5">
+        <app-budget-card
+          (remove)="onRemove($event)"
+          (edit)="manipulateBudget($event, 'Edit')"
+          class="my-5"
+          *ngFor="let budget of budgetList"
+          [budget]="budget"
+        />
+      </div>
+    </div>
+  </div>
+</app-container>

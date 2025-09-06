@@ -1,0 +1,47 @@
+<div class="card_wrapper bg-white p-3 m-5 rounded-2xl">
+  <div class="flex justify-between items-center">
+    <app-card-title
+      [cardTitle]="{ title: budget.title.title, id: budget.theme.id }"
+    />
+    <div class="py-5 relative">
+      <img
+        (click)="cardManipulation()"
+        class="cursor-pointer"
+        src="ellipses.svg"
+      />
+      <div
+        *ngIf="cardManip"
+        class="bg-white border rounded-xl menu absolute top-10 right-0"
+      >
+        <li
+          (click)="editItem()"
+          class="w-32 list-none text-black text-sm border-blue-50 border-b p-3 cursor-pointer capitalize text-md font-light"
+        >
+          Edit budget
+        </li>
+        <li
+          (click)="deleteItem()"
+          class="w-32 list-none text-red-600 text-sm p-3 cursor-pointer capitalize text-md font-light"
+        >
+          Delete budget
+        </li>
+      </div>
+    </div>
+  </div>
+  <p class="text-gray-600 py-2 text-sm">Maximum of {{ budget.maxmumSpend }}</p>
+  <app-progress-bar percentage="60%" [budgetTheme]="budget.theme.id" />
+  <div class="grid grid-cols-2">
+    <app-pots-saving-micro
+      [savingMicro]="{ title: 'Spent', total: spent, theme: budget.theme }"
+    />
+    <app-pots-saving-micro
+      [savingMicro]="{
+        title: 'Remaining',
+        total: remaining,
+        theme: budget.theme
+      }"
+    />
+  </div>
+
+  <app-transactions [transactionsList]="relatedTrs" />
+</div>

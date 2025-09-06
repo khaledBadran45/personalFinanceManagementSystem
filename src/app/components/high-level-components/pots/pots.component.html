@@ -1,0 +1,27 @@
+<app-container>
+  <div class="flex justify-between">
+    <h1>Pots</h1>
+    <button
+      (click)="popUpVisibililty = true"
+      class="text-sm p-4 bg-black hover:bg-zinc-600 transition-all rounded-md text-white"
+    >
+      + Add new pot
+    </button>
+  </div>
+  @if(popUpVisibililty){
+  <app-pop-up
+    (closePopUp)="this.popUpVisibililty = false"
+    [popUpContent]="{
+      title: 'Pot',
+      desc: 'Choose a category to set a spending budget. These categories can help you monitor spending.'
+    }"
+  >
+    <app-pot-form />
+  </app-pop-up>
+  }
+  <div class="rounded-lg" ngProjectAs="page">
+    <div class="grid grid-cols-2 gap-2">
+      <app-pot-card [pot]="pot" *ngFor="let pot of getPots() | async" />
+    </div>
+  </div>
+</app-container>

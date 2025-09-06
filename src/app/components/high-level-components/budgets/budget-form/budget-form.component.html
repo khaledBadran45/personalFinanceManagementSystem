@@ -1,0 +1,41 @@
+<form [formGroup]="budgetForm" (ngSubmit)="submit()">
+  <app-dropdown-menu
+    [dropdown]="budgetCategory"
+    [usedOptions]="budgetList"
+    [control]="titleControl"
+    comparingKey="title"
+  />
+  <div class="inputWrapper relative mt-3">
+    <div>
+      <h1 class="text-xs capitalize font-bold tracking-wide pb-1 text-gray-700">
+        maxmum spend
+      </h1>
+      <input
+        name="maxmumSpend"
+        type="number"
+        placeholder="eg.1000"
+        [formControl]="maxSpendControl"
+        class="font-light tracking-wide text-sm text-black p-3 ps-9"
+      />
+    </div>
+    @if(maxSpendControl.getError('required') && maxSpendControl.touched){
+    <p class="text-red-700 font-light text-sm">
+      Maxmum spend field is required .
+    </p>
+    }
+  </div>
+  <app-dropdown-menu
+    [usedOptions]="budgetList"
+    comparingKey="theme"
+    [dropdown]="themes"
+    optionValue="id"
+    [control]="themeControl"
+  />
+  <button
+    [disabled]="budgetForm.invalid"
+    type="submit"
+    class="text-sm p-4 w-full mt-5 hover:bg-gray-600 transition-all bg-black rounded-md text-white"
+  >
+    Submit
+  </button>
+</form>

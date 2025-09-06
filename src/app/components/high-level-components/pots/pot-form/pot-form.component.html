@@ -1,0 +1,37 @@
+<form (ngSubmit)="submit()">
+  <div class="inputWrapper mt-3">
+    <h1 class="text-xs capitalize font-bold tracking-wide p-2 text-gray-700">
+      Pot name
+    </h1>
+    <input
+      name="PotName"
+      placeholder="buying a new car"
+      [(ngModel)]="PotTitle"
+      class="font-light tracking-wide text-sm text-black p-3"
+    />
+
+    <h1 class="text-xs capitalize font-bold tracking-wide p-2 text-gray-700">
+      target
+    </h1>
+    <input
+      name="target"
+      type="number"
+      placeholder="eg.1000"
+      [(ngModel)]="target"
+      class="font-light tracking-wide text-sm text-black p-3"
+    />
+  </div>
+  <!-- <app-input
+      (dataEntered)="onDataEntered($event)"
+      [input]="{ title: 'Maximum Spend', pleceholder: 2000 }"
+    /> -->
+  <app-dropdown-menu
+    [dropdown]="themes"
+    optionValue="id"
+  />
+  <button
+    class="text-sm p-4 w-full mt-5 hover:bg-gray-600 transition-all bg-black rounded-md text-white"
+  >
+    Add Pot
+  </button>
+</form>

@@ -1,0 +1,19 @@
+#overlay {
+  background: #00000080;
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease; /* Smooth transition */
+
+  .contentWrapper {
+    width: 560px;
+    height: auto;
+    background-color: #fff;
+  }
+}
+a {
+  cursor: pointer;
+}

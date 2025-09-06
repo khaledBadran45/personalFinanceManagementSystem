@@ -1,0 +1,6 @@
+<app-card-item>
+  Transactions
+  <div ngProjectAs="component" class="listOfTransactions">
+    <app-transcation [trs]="tr" *ngFor="let tr of transactionsList()" />
+  </div>
+</app-card-item>

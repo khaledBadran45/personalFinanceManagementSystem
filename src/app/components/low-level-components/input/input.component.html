@@ -1,0 +1,13 @@
+<div class="inputWrapper mt-3">
+  <h1 class="text-xs capitalize font-bold tracking-wide pb-1 text-gray-700">
+    {{ input().title }}
+  </h1>
+  <input
+    [formControl]="control()"
+    (keydown)="onkeyUp(dataEntered.value)"
+    #dataEntered
+    class="font-light tracking-wide text-sm text-black p-3"
+    [placeholder]="input().pleceholder"
+    id="input"
+  />
+</div>

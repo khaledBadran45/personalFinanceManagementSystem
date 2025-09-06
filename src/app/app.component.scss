@@ -1,0 +1,11 @@
+@use "@styles/color.scss"as *;
+.app-container{
+  background-color: $secondColor;
+  app-sidebar{
+    width: 300px;
+    
+  }
+  .body{
+    height: 100vh;
+  }
+}

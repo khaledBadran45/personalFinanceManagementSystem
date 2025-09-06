@@ -1,0 +1,11 @@
+::ng-deep {
+  apx-chart {
+    .apexcharts-canvas {
+      margin: 0 auto !important;
+    }
+    .apexcharts-legend {
+      top: 50%;
+      transform: translateY(50px);
+    }
+  }
+}

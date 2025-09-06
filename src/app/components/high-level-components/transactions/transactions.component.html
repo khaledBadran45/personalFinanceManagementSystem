@@ -1,0 +1,70 @@
+<app-container>
+  Transactions
+  <div class="p-7 rounded-lg bg-white" ngProjectAs="page">
+    <div class="grid grid-cols-4 gap-5">
+      <app-input
+        (dataEntered)="onDataEntered($event)"
+        class="md:col-span-2 col-span-3"
+        [input]="{ title: 'Transaction', pleceholder: 'Search transaction' }"
+      />
+      <div
+        class="col-span-1 md:col-span-2 gap-5 grid grid-cols-2 items-center justify-items-end"
+      >
+        <app-transactions-menu
+          (select)="onSelectSortingOption($event)"
+          [dropdown]="{ title: 'Sort By', id: 'sad45', options: sortByOptions }"
+        >
+          <img src="sort_by.svg" />
+        </app-transactions-menu>
+        <app-transactions-menu
+          (select)="onSelectCattegOption($event)"
+          [dropdown]="{
+            title: 'Category',
+            id: 'Catsad45',
+            options: categOptions
+          }"
+        >
+          <img src="category.svg" />
+        </app-transactions-menu>
+      </div>
+    </div>
+    <ul>
+      <div
+        class="thead gap-5 grid lg:grid-cols-5 pt-7 grid-cols-2 justify-items-center"
+      >
+        <li class="text-g justify-self-start lg:col-span-2">
+          Recipient / Sender
+        </li>
+        <li class="text-g hidden lg:block">Category</li>
+        <li class="text-g hidden lg:block">Transaction Date</li>
+        <li class="text-g justify-self-end">Amount</li>
+      </div>
+      <div class="tbody">
+        <!-- rows -->
+        <div
+          *ngFor="let transaction of getTransactionList() | async"
+          class="gap-5 border-b py-4 grid lg:grid-cols-5 grid-cols-2 justify-items-center items-center"
+        >
+          <li class="justify-self-start lg:col-span-2 flex border-bottom">
+            <img src="1.jpg" class="rounded-full w-11" />
+            <div class="ps-3 flex flex-col justify-center">
+              <p class="font-semibold text-sm">{{ transaction.sender }}</p>
+              <p class="text-g text-xs lg:hidden">{{ transaction.category }}</p>
+            </div>
+          </li>
+          <li class="hidden text-g lg:block">{{ transaction.category }}</li>
+          <li class="hidden lg:block text-sm text-g">
+            {{ transaction.date | date }}
+          </li>
+          <li class="justify-self-end text-sm font-bold text-end">
+            {{ transaction.amount | currency }}
+            <p class="text-g font-light text-sm lg:hidden">
+              {{ transaction.date | date }}
+            </p>
+          </li>
+        </div>
+        <app-pagination (changePage)="onChangePage($event)" />
+      </div>
+    </ul>
+  </div>
+</app-container>

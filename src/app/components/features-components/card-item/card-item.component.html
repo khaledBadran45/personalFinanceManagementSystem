@@ -1,0 +1,11 @@
+<div class="card_color p-5">
+  <div class="flex justify-between items-center py-4">
+    <h1 ngProjectAs="title" class="text-lg">
+      <ng-content />
+    </h1>
+    <p class="text-slate-400 link_color">
+      see details <i class="fa-solid text-sm pl-3 fa-caret-right"></i>
+    </p>
+  </div>
+  <ng-content select="component" />
+</div>

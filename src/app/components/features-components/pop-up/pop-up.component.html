@@ -1,0 +1,16 @@
+<section id="overlay" class="flex active px-3 justify-center items-center">
+  <div class="rounded-lg contentWrapper px-10 py-5">
+    <div class="flex">
+      <div>
+        <h1 class="pb-4">{{ popUpContent.title }}</h1>
+        <p class="text-sm font-medium text-gray-500">
+          {{ popUpContent.desc }}
+        </p>
+      </div>
+      <a (click)="close()">
+        <img src="close-button.svg" alt="" srcset="" />
+      </a>
+    </div>
+    <ng-content />
+  </div>
+</section>

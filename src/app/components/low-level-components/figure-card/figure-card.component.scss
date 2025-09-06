@@ -1,0 +1,7 @@
+@use "@styles/color.scss";
+.activeCard {
+  background-color: color.$primaryColor;
+  div * {
+    color: color.$secondColor !important;
+  }
+}

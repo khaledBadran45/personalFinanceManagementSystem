@@ -1,0 +1,15 @@
+<button
+  (click)="addBudget()"
+  class="text-sm p-4 bg-black hover:bg-zinc-600 transition-all rounded-md text-white"
+>
+  + Add new {{ popUpContent.title }}
+</button>
+@if(popUpVisibility){
+<app-pop-up [popUpContent]="popUpContent" (closePopUp)="onClose()">
+  <!-- @if(popUpContent.title == 'Budget'){ -->
+  <app-budget-form #budget (closePopUp)="onClose()" />
+  <!-- }@else {
+  <app-pot-form />
+  } -->
+</app-pop-up>
+}

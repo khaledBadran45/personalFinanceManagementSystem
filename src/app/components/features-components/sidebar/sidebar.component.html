@@ -1,0 +1,68 @@
+<aside>
+  <div class="aside_top">
+    <li class="fw-bold main-heading-text">
+      <img
+        src="https://sams-finance-app.onrender.com/assets/layout/navbar/finance.svg"
+        alt=""
+        srcset=""
+      />
+    </li>
+  </div>
+  <div class="aside_middle">
+    <ul class="overflow-hidden text-ellipsis">
+      <li routerLinkActive="activated_link" class="link">
+        <div>
+          <a routerLink="overview" class="flex justify-start items-center">
+            <i class="fa-solid fa-house"></i>
+            <p>overview</p></a
+          >
+        </div>
+      </li>
+      <li routerLinkActive="activated_link" class="link">
+        <div>
+          <a class="flex justify-start items-center" routerLink="transactons">
+            <i class="fa-solid fa-arrows-turn-to-dots"> </i>
+            <p>transactions</p>
+          </a>
+        </div>
+      </li>
+      <li routerLinkActive="activated_link" class="link">
+        <div>
+          <a class="flex justify-start items-center" routerLink="budgets">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            <p>budgets</p>
+          </a>
+        </div>
+      </li>
+      <li routerLinkActive="activated_link" class="link">
+        <div>
+          <a class="flex justify-start items-center" routerLink="pots">
+            <i class="fa-solid fa-chart-pie"></i>
+            <p>pots</p>
+          </a>
+        </div>
+      </li>
+      <li routerLinkActive="activated_link" class="link">
+        <div>
+          <a
+            class="flex justify-start items-center"
+            routerLink="recurring_bills"
+          >
+            <i class="fa-solid fa-rectangle-list"></i>
+            <p>recurring bills</p>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="aside_bottom hidden">
+    <div class="link">
+      <li Rotate (click)="minimzeMenu()">
+        <a class="minimizeButton d-flex justify-around align-items-center">
+          <i class="fa-solid fa-circle-arrow-left rotate-box"></i>
+          <p>minimize menu</p>
+        </a>
+      </li>
+    </div>
+  </div>
+</aside>

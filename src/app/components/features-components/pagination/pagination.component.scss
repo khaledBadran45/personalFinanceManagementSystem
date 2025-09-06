@@ -1,0 +1,25 @@
+li {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  margin: 3px;  
+  border: 1px solid #98908b;
+  font-size: small;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    background-color: #98908b;
+    color: #fff;
+  }
+}
+.active{
+    background-color: #000;
+    color: #fff;
+}
+.prev,
+.next {
+  width: 100px;
+}
+

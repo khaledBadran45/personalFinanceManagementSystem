@@ -1,0 +1,5 @@
+@use "@styles/color.scss" as *;
+li {
+  background-color: $secondColor;
+  border-color: $secondColor;
+}

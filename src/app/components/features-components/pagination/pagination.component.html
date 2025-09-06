@@ -1,0 +1,19 @@
+<ul class="flex mt-3 justify-between items-center">
+  <div class="prev">
+    <li (click)="onChangePage(pagin.currentPage - 1)">&laquo; prev</li>
+  </div>
+  <div class="pages flex justify-between items-center">
+    <li
+      class="page"
+      (click)="onChangePage(i+1)"
+      [class.active]="pagin.currentPage == i+1"
+      *ngFor="let page of totalPages; let i = index"
+    >
+      {{ i + 1 }}
+    </li>
+      <!-- <app-dropdown-menu [dropdown]="perpageOptions" [selected]="this.perpageOptions.title" optionValue="id" /> -->
+  </div>
+  <div class="next">
+    <li (click)="onChangePage(pagin.currentPage + 1)">next &raquo;</li>
+  </div>
+</ul>

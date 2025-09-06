@@ -1,0 +1,18 @@
+input {
+  background-color: #fff;
+  border: 1px solid rgb(126, 126, 126);
+  color: #000;
+  border-radius: 8px;
+  width: 100%;
+  &::placeholder {
+    color: #000;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button:disabled {
+  background-color: #4b5563 !important;
+}

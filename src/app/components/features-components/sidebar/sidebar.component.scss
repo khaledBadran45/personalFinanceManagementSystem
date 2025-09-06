@@ -1,0 +1,95 @@
+@use "@styles/color.scss"as *;
+aside {
+  background-color:$primaryColor;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 0.5fr 2fr 1fr;
+  .aside_top {
+    display: flex;
+    align-items: center;
+  }
+  .aside_middle {
+    margin-top: 3em;
+  }
+  .aside_bottom {
+    align-self: center;
+  }
+}
+li,
+li a {
+  list-style: none;
+  font-weight: 700;
+}
+li a {
+  color:$linkColor;
+  cursor: pointer;
+}
+
+.main-heading-text {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 0em;
+  color: #ffffff;
+  padding-inline: 0.5em;
+}
+.link {
+  width: 95%;
+  margin-right: 1em;
+  height: 60px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  a {
+    color:$linkColor;
+    &:hover {
+      transition: all 0.3s;
+      color: #ffffff;
+    }
+  }
+  i {
+    padding: 2px 1em;
+    color:$linkColor;
+  }
+}
+.state_color {
+  background-color:$stateColor;
+}
+.none {
+  background-color: none;
+}
+.activated_link {
+  transition: all 0.4s;
+  background-color:$stateColor;
+  // the background color style is gonna be binded to the element if the expanded poperty is true
+  &::before {
+    content: "";
+    height: 100%;
+    width: 0.3em;
+    background-color: #597c7c;
+  }
+  a {
+    color:$primaryColor;
+    &:hover {
+      transition: all 0.3s;
+      color:$primaryColor;
+    }
+  }
+  i {
+    color: #597c7c;
+  }
+}
+
+.fa-circle-arrow-left {
+  transition: transform 0.3s ease-in-out;
+}
+p {
+  width: max-content;
+}
+
+/**
+[ngClass]="(isMinimize$ | async)?.isMinimized ? 'state_color': 'none'"
+*/

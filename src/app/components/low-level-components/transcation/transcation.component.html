@@ -1,0 +1,14 @@
+<article class="flex w-100 justify-between border-b py-2">
+  <div class="flex items-center">
+    <img
+    class="w-10 rounded"
+      alt="user-image"
+      src="0.jpg"
+    />
+    <p class="font-bold  px-3 tracking-wide text-sm">{{ trs().sender }}</p>
+  </div>
+  <div class="flex flex-col gap-100">
+    <p class="text-green-800 text-sm font-bold">{{ trs().amount }}</p>
+    <p class="text-xs pt-3">{{ trs().date | date }}</p>
+  </div>
+</article>
