@@ -1,0 +1,22 @@
+<div class="py-5">
+    <div class="total_saved flex items-center justify-between">
+        <p class="text-gray-500 text-sm font-medium">New amount</p>
+        <h2 class="text-[gray-800] text-3xl font-bold">${{newAmount()}}.00</h2>
+    </div>
+    <div class="progress_bar rounded-md gap-x-1 flex justify-start overflow-hidden bg-[#F8F4F0] my-4 h-2">
+        <div class="bg-black h-2" [class]="amountToAdd()?'rounded-0':'rounded-e'" [style.width]="currentAmountPercentage"></div>
+        <div class="bg-[#277C78] rounded-e h-2" [style.width]="amountToAddPercentage"></div>
+    </div>
+    <div class="total_saved flex items-center justify-between">
+        <p class="text-[#277C78] text-sm font-semibold">{{newAmountPercentage}}</p>
+        <h2 class="text-gray-500 text-xs font-medium">Target of ${{target()}}</h2>
+    </div>
+    <div>
+        <p class="text-gray-500 pt-5 text-sm font-medium">Amount to withdraw</p>
+        <input (keyup)="updateAmount(amountInput.value)" #amountInput type="number" placeholder="eg. 2000"
+            class="w-full border font-light text-sm border-gray-600 mt-2 p-3 rounded-md" />
+    </div>
+    <button (click)="confirmAddition()"
+        class="text-sm p-4 w-full mt-5 font-semibold hover:bg-gray-600 transition-all bg-black rounded-md text-white">
+        Confirm addition
+    </button>

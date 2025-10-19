@@ -12,16 +12,16 @@
   <app-pop-up
     (closePopUp)="this.popUpVisibililty = false"
     [popUpContent]="{
-      title: 'Pot',
-      desc: 'Choose a category to set a spending budget. These categories can help you monitor spending.'
+      title: 'Add new pot',
+      desc: 'Create a pot to set savings targets. These can help keep you on track as you save for special purchases.'
     }"
   >
-    <app-pot-form />
+    <app-pot-form (close)="popUpVisibililty = false" />
   </app-pop-up>
   }
   <div class="rounded-lg" ngProjectAs="page">
     <div class="grid grid-cols-2 gap-2">
-      <app-pot-card [pot]="pot" *ngFor="let pot of getPots() | async" />
+      <app-pot-card  [pot]="pot" *ngFor="let pot of getPots() | async" />
     </div>
   </div>
 </app-container>

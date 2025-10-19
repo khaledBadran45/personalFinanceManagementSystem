@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, input, OnInit, output } from '@angular/core';
+import { Component, EventEmitter, Input, input, OnInit, Output, output } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -28,6 +28,8 @@ export class DropdownMenuComponent implements OnInit {
 
   @Input() comparingKey: string = '';
 
+  @Output() selecte = new EventEmitter<string>();
+
   ngOnInit(): void {
     this.control.setValue(this.availableOptions[0]);
   }
@@ -48,6 +50,8 @@ export class DropdownMenuComponent implements OnInit {
       !this.isOptionUsed(option.title) && this.control.setValue(option);
       document.getElementById('select-' + this.dropdown().id)?.click(); // Close the dropdown after selection;
     }
+    console.log(option.id);
+    this.selecte.emit(option.id);
   }
 
   markAsTouched() {

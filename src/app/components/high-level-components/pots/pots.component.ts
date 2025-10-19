@@ -20,11 +20,8 @@ import { PotFormComponent } from "./pot-form/pot-form.component";
   styleUrl: './pots.component.scss',
 })
 export class PotsComponent {
-onSubmitBudget($event: Event) {
-throw new Error('Method not implemented.');
-}
   potService = inject(PotsService);
-popUpVisibililty: any;
+  popUpVisibililty=false;
   getPots() {
     return this.potService.potsList$;
   }

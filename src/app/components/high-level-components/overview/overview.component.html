@@ -5,17 +5,16 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 pt-10 gap-5">
       <div class="grid gap-y-5">
         <app-pots />
-        <div class="wrapper bg-white ">
-          <app-card-item [link]="'/transactons'">
-            Transactions
-            <div ngProjectAs="component" class="totalSaved">
-              <app-transactions-list [transactions]="trs" />
-            </div>
-          </app-card-item>
-        </div>
+        <app-card-item [link]="'/transactons'">
+          Transactions
+          <div ngProjectAs="component" class="totalSaved">
+            <app-transactions-list [transactions]="trs" />
+          </div>
+        </app-card-item>
       </div>
       <div>
         <div class="pb-5">
+          <app-chart />
           <!-- <app-budget-card /> -->
         </div>
         <app-recurring-item />

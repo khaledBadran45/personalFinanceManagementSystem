@@ -1,13 +1,13 @@
-<section id="overlay" class="flex active px-3 justify-center items-center">
+<section id="overlay" class="flex active p-3 justify-center items-center">
   <div class="rounded-lg contentWrapper px-10 py-5">
-    <div class="flex">
+    <div class="flex justify-between">
       <div>
-        <h1 class="pb-4">{{ popUpContent.title }}</h1>
+        <h1 class="pb-4 text-3xl text-gray-800">{{ popUpContent.title }}</h1>
         <p class="text-sm font-medium text-gray-500">
           {{ popUpContent.desc }}
         </p>
       </div>
-      <a (click)="close()">
+      <a (click)="close()" class="w-[100px]">
         <img src="close-button.svg" alt="" srcset="" />
       </a>
     </div>

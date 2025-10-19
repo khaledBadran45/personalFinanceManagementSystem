@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { DropdownMenuComponent } from '../../../low-level-components/dropdown-menu/dropdown-menu.component';
 import { FormsModule } from '@angular/forms';
 import { Dropdown } from '../../../low-level-components/dropdown-menu/dropdown.model';
@@ -14,8 +14,9 @@ import { PotsService } from '../pots.service';
 export class PotFormComponent {
   potService = inject(PotsService)
   target!: string;
+  close = output<boolean>()
   PotTitle!: string;
-  selectedThemeColor!: string;
+  selectedThemeColor: string = '#FF5733';
   themes: Dropdown = {
     title: 'Themes',
     options: [
@@ -33,16 +34,19 @@ export class PotFormComponent {
     id: 'thColors',
   };
   onSelectThemeColor(themeColor: string) {
+    console.log(themeColor);
     this.selectedThemeColor = themeColor;
   }
   submit() {
-    let pot:pot = {
-      name:this.PotTitle,
-      target:this.target,
-      theme:this.selectedThemeColor,
+    let pot: pot = {
+      name: this.PotTitle,
+      target: this.target,
+      theme: this.selectedThemeColor,
+      saved: 0
     }
-    console.log(pot);
-    this.potService.addPot(pot)
-    
+    if (this.PotTitle && this.target) {
+      this.potService.addPot(pot)
+      this.close.emit(true)
+    }
   }
 }
