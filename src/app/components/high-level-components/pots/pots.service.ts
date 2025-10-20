@@ -19,13 +19,13 @@ export class PotsService {
     localStorage.setItem('pots', JSON.stringify([...this.PotsSubject.getValue(), pot]));
     this.PotsSubject.next([...this.PotsSubject.getValue(), pot]);
   }
-  addNewAmountToPot(title: string, newAmount: number) {
+  addNewAmountToPot(title: string, newAmount: number, currentAmountPercentage: string) {
     const pots = this.PotsSubject.getValue();
     const pot = pots.filter((p) => p.name === title)[0];
     console.log(pot);
     if (title && pot) {
       pot.saved = newAmount;
-      // pot.savedPercentage = `${((pot.saved / Number(pot.target)) * 100).toFixed(1)}%`;
+      pot.savedPercentage = `${(pot.saved / Number(pot.target) * 100).toFixed(1)}%`;
       const updatedPots = pots.map((p) => p.name === title ? pot : p);
       localStorage.setItem('pots', JSON.stringify(updatedPots));
       this.PotsSubject.next(updatedPots);

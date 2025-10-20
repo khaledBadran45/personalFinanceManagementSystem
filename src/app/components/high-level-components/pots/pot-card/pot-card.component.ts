@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { CardTitleComponent } from '../../../features-components/budget-card/card-title/card-title.component';
 import { pot } from '../pot-model';
 import { PopUPComponent } from "../../../features-components/pop-up/pop-up.component";
@@ -14,13 +14,15 @@ export class PotCardComponent {
   pot = input.required<pot>();
   isPopUpVisible: boolean = false;
   title: string = '';
-
+  transactionType = signal<'add' | 'withdraw'>('add');
   addMoney() {
+    this.transactionType.set('add');
     // Logic to add money to the pot
     this.isPopUpVisible = true;
     this.title = `Add to '${this.pot().name}'`;
   }
   withdraw() {
+this.transactionType.set('withdraw');
     this.isPopUpVisible = true;
     this.title = `Withdraw from '${this.pot().name}'`;
     // Logic to withdraw money from the pot

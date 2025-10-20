@@ -3,4 +3,5 @@ export interface pot {
   target: string;
   theme: string;
   saved: number;
+  savedPercentage?: string;
 }

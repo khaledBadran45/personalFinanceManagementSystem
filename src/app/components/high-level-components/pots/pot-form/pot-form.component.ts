@@ -42,7 +42,8 @@ export class PotFormComponent {
       name: this.PotTitle,
       target: this.target,
       theme: this.selectedThemeColor,
-      saved: 0
+      saved: 0,
+      savedPercentage: '0.0%'
     }
     if (this.PotTitle && this.target) {
       this.potService.addPot(pot)
