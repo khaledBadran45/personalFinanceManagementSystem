@@ -30,15 +30,6 @@ export class PotsService {
       localStorage.setItem('pots', JSON.stringify(updatedPots));
       this.PotsSubject.next(updatedPots);
     }
-
-    /**
-     * i have the list of pots
-     * i have the title of the pot to update
-     * get the pot from the list
-     * update the pot's saved amount
-     * save the updated list back to local storage
-     */
-
   }
   // removePot(pot: pot) {
   //   localStorage.setItem('pots', JSON.stringify([...this.PotsSubject.getValue(), pot]));

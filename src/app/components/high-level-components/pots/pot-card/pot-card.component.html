@@ -12,30 +12,30 @@
       <h2 class="text-gray-800 text-3xl font-bold">${{ pot().saved }}.0</h2>
     </div>
     <div class="progress_bar rounded-md gap-x-1 flex justify-start overflow-hidden bg-[#F8F4F0] my-4 h-2">
-        <div class="bg-black flex justify-end h-2" [class]="pot().saved?'rounded-0':'rounded-e'"
-          [style.width]="pot().savedPercentage"></div>
-      </div>
-      <div class="total_saved flex items-center justify-between">
-        <p class="text-gray-500 text-sm font-medium">{{pot().savedPercentage}}</p>
-        <h2 class="text-gray-500 text-xs font-medium">Target of ${{ pot().target }}</h2>
-      </div>
-      <div class="buttons py-5 flex items-center justify-center mt-4 gap-5">
-        <button (click)="addMoney()"
-          class="bg-[#F8F4F0] border transition-all duration-200 hover:bg-white text-gray-800 font-bold text-sm w-full py-4 rounded-md">+
-          Add Money</button>
-        <button (click)="withdraw()"
-          class="bg-[#F8F4F0] border transition-all duration-200 hover:bg-white text-gray-800 font-bold text-sm w-full py-4 rounded-md">Withdraw</button>
-      </div>
+      <div class="bg-black flex justify-end h-2" [class]="pot().saved?'rounded-0':'rounded-e'"
+        [style.width]="pot().savedPercentage"></div>
     </div>
-    <!-- buttons add money, withdraw -->
+    <div class="total_saved flex items-center justify-between">
+      <p class="text-gray-500 text-sm font-medium">{{pot().savedPercentage}}</p>
+      <h2 class="text-gray-500 text-xs font-medium">Target of ${{ pot().target }}</h2>
+    </div>
+    <div class="buttons py-5 flex items-center justify-center mt-4 gap-5">
+      <button (click)="addMoney()"
+        class="bg-[#F8F4F0] border transition-all duration-200 hover:bg-white text-gray-800 font-bold text-sm w-full py-4 rounded-md">+
+        Add Money</button>
+      <button (click)="withdraw()"
+        class="bg-[#F8F4F0] border transition-all duration-200 hover:bg-white text-gray-800 font-bold text-sm w-full py-4 rounded-md">Withdraw</button>
+    </div>
   </div>
-  @if(isPopUpVisible){
-  <app-pop-up
-    [popUpContent]="{ title:title, desc: 'Add money to your pot to keep it separate from your main balance. As soon as you add this money, it will be deducted from your current balance.' }"
-    (closePopUp)="this.isPopUpVisible=false">
-    <app-update-pot [transactionType]="transactionType()" (closePopUp)="this.isPopUpVisible=false"
-      [target]="pot().target" [saved]="pot().saved" [title]="pot().name" [currentAmount]="pot().saved"></app-update-pot>
-  </app-pop-up>
-  }
-  <!-- 
+  <!-- buttons add money, withdraw -->
+</div>
+@if(isPopUpVisible){
+<app-pop-up
+  [popUpContent]="{ title:title, desc: 'Add money to your pot to keep it separate from your main balance. As soon as you add this money, it will be deducted from your current balance.' }"
+  (closePopUp)="this.isPopUpVisible=false">
+  <app-update-pot [transactionType]="transactionType()" (closePopUp)="this.isPopUpVisible=false" [target]="pot().target"
+    [saved]="pot().saved" [title]="pot().name" [currentAmount]="pot().saved"></app-update-pot>
+</app-pop-up>
+}
+<!-- 
 [(isVisible)]="isPopUpVisible" -->

@@ -4,7 +4,7 @@
     <app-list-of-cards></app-list-of-cards>
     <div class="grid grid-cols-1 lg:grid-cols-2 pt-10 gap-5">
       <div class="grid gap-y-5">
-        <app-pots />
+        <app-pots [link]="'/pots'" />
         <app-card-item [link]="'/transactons'">
           Transactions
           <div ngProjectAs="component" class="totalSaved">
