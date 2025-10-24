@@ -1,6 +1,21 @@
 <app-card-item [link]="link()">
   pots
-  <div ngProjectAs="component" class="totalSaved">
+  <div ngProjectAs="component" class="totalSaved grid gap-5 grid-cols-2 items-start  justify-start">
     <app-totalservice />
+    <div>
+      <div class="flex flex-wrap gap-5 justify-start items-start">
+       @for (item of list(); track $index) {
+        <div class="flex">
+          <!-- How to add a class from the theme key  -->
+          <div class="virticleLine h-13 rounded-md w-[3px]" [style.backgroundColor]="item.theme"></div>
+          <div>
+            <p class="text-gray-500 p-1 mx-1 text-xs font-medium capitalize">{{item.name}}</p>
+            <p class="text-gray-800 p-1 mx-1 text-sm font-bold">{{item.saved | currency}}</p>
+          </div>
+        </div>
+        }
+        
+      </div>
+    </div>
   </div>
 </app-card-item>

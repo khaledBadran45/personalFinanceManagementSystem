@@ -13,12 +13,19 @@
         </app-card-item>
       </div>
       <div>
-        <div class="pb-5">
-          <app-chart />
+        <app-card-item [link]="'/budget'">
+          Budget
+          <div ngProjectAs="component" class="totalSaved">
+            </div>
+            </app-card-item>
+            </div>
+            <!-- <app-budget-overview></app-budget-overview> -->
+        <!-- <div class="pb-5"> -->
+          <!-- <app-chart /> -->
           <!-- <app-budget-card /> -->
-        </div>
-        <app-recurring-item />
-      </div>
+        <!-- </div> -->
+        <!-- <app-recurring-item /> -->
+      <!-- </div> -->
     </div>
   </div>
 </app-container>

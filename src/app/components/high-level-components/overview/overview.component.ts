@@ -1,9 +1,7 @@
-import { AfterViewInit, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ListOfCardsComponent } from '../../features-components/list-of-cards/list-of-cards.component';
 import { PotsComponent } from '../../features-components/pots/pots.component';
-import { RecurringItemComponent } from "../../features-components/recurring-item/recurring-item.component";
 import { ContainerComponent } from "../../low-level-components/container/container.component";
-import { BudgetCardComponent } from '../../features-components/budget-card/budget-card.component';
 import { BudgetsService } from '../budgets/budgets.service';
 import { Subscription, take } from 'rxjs';
 import { Budget } from '../../features-components/budget-card/budget-card-model';
@@ -18,27 +16,24 @@ import { PotsService } from '../pots/pots.service';
     imports: [
         ListOfCardsComponent,
         PotsComponent,
-        RecurringItemComponent,
         ContainerComponent,
         TransactionsListComponent,
         CardItemComponent,
-        ChartComponent
     ],
     templateUrl: './overview.component.html',
     styleUrl: './overview.component.scss'
 })
 export class OverviewComponent implements OnInit, AfterViewInit {
     budgetService = inject(BudgetsService);
+    potsService = inject(PotsService);
     transactionService = inject(TransactionsService);
     sub!: Subscription;
-   
     budgetList: Budget[] = [];
     trs: Transaction[] = [];
     @ViewChild(ChartComponent) donatChart!: ChartComponent;
     constructor() { }
     ngAfterViewInit(): void {
         this.addBudgetListToChart();
-        // this.calcTotalSavedInPots();
     }
     ;
     ngOnInit(): void {
@@ -46,7 +41,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         this.trs = this.transactionService.src.splice(0, 8);
 
     }
-   
     getBudgetList() {
         this.sub = this.budgetService.budgetList.subscribe((list) => {
             this.budgetList = list;
@@ -61,12 +55,11 @@ export class OverviewComponent implements OnInit, AfterViewInit {
             labels.push(el.title.title);
             colors.push(el.theme.id);
         });
-        // console.log(this.budgetList, 'Budget Liste Here ');
+
         this.donatChart.chart.updateOptions({
             series: maxmumspends,
             labels: labels,
             colors: colors,
         });
     }
-
 }

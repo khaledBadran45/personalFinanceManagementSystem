@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { take } from 'rxjs';
 import { PotsService } from '../../../high-level-components/pots/pots.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
     selector: 'app-totalservice',
-    imports: [],
+    imports: [CurrencyPipe],
     templateUrl: './totalservice.component.html',
     styleUrl: './totalservice.component.scss'
 })
