@@ -89,7 +89,15 @@ li a {
 p {
   width: max-content;
 }
-
+.active{
+  background-color: $stateColor;
+  transition: all 0.3s;
+  border-radius: 8px;
+  p{
+  padding: 5px;
+  color: #597c7c;
+  }
+}
 /**
 [ngClass]="(isMinimize$ | async)?.isMinimized ? 'state_color': 'none'"
 */
