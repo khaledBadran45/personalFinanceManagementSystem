@@ -1,24 +1,20 @@
-<aside>
+<aside class="!hidden md:!grid">
   <div class="aside_top">
     <li class="fw-bold main-heading-text">
-      <img
-        src="https://sams-finance-app.onrender.com/assets/layout/navbar/finance.svg"
-        alt=""
-        srcset=""
-      />
+      <img src="https://sams-finance-app.onrender.com/assets/layout/navbar/finance.svg" alt="" srcset="" />
     </li>
   </div>
   <div class="aside_middle">
     <ul class="overflow-hidden text-ellipsis">
-      <li routerLinkActive="activated_link" class="link">
+      <li routerLinkActive="activated_link" class="link h-12">
         <div>
           <a routerLink="overview" class="flex justify-start items-center">
             <i class="fa-solid fa-house"></i>
-            <p>overview</p></a
-          >
+            <p>overview</p>
+          </a>
         </div>
       </li>
-      <li routerLinkActive="activated_link" class="link">
+      <li routerLinkActive="activated_link" class="link h-12">
         <div>
           <a class="flex justify-start items-center" routerLink="transactons">
             <i class="fa-solid fa-arrows-turn-to-dots"> </i>
@@ -26,7 +22,7 @@
           </a>
         </div>
       </li>
-      <li routerLinkActive="activated_link" class="link">
+      <li routerLinkActive="activated_link" class="link h-12">
         <div>
           <a class="flex justify-start items-center" routerLink="budgets">
             <i class="fa-solid fa-money-check-dollar"></i>
@@ -34,7 +30,7 @@
           </a>
         </div>
       </li>
-      <li routerLinkActive="activated_link" class="link">
+      <li routerLinkActive="activated_link" class="link h-12">
         <div>
           <a class="flex justify-start items-center" routerLink="pots">
             <i class="fa-solid fa-chart-pie"></i>
@@ -66,3 +62,42 @@
     </div>
   </div>
 </aside>
+<div class="bg-[#201F24] w-[90vw]  right-[50%] translate-x-1/2 m-2 absolute top-[85vh]  rounded-lg p-4 ">
+  
+  <div class="aside_middle">
+    <ul class="flex text-ellipsis">
+      <li routerLinkActive="activated_link" class="link p-1">
+        <div>
+          <a routerLink="overview" class="flex justify-start items-center">
+            <i class="fa-solid fa-house"></i>
+            <p>overview</p>
+          </a>
+        </div>
+      </li>
+      <li routerLinkActive="activated_link" class="link p-1">
+        <div>
+          <a class="flex justify-start items-center" routerLink="transactons">
+            <i class="fa-solid fa-arrows-turn-to-dots"> </i>
+            <p>transactions</p>
+          </a>
+        </div>
+      </li>
+      <li routerLinkActive="activated_link" class="link p-1">
+        <div>
+          <a class="flex justify-start items-center" routerLink="budgets">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            <p>budgets</p>
+          </a>
+        </div>
+      </li>
+      <li routerLinkActive="activated_link" class="link p-1">
+        <div>
+          <a class="flex justify-start items-center" routerLink="pots">
+            <i class="fa-solid fa-chart-pie"></i>
+            <p>pots</p>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
