@@ -16,15 +16,21 @@
         <app-card-item [link]="'/budget'">
           Budget
           <div ngProjectAs="component" class="totalSaved">
+            @if(this.chartOptions.series?.length){
+              <apx-chart [colors]="chartOptions.colors!" [series]="chartOptions.series!" [chart]="chartOptions.chart!"
+              [labels]="chartOptions.labels" [responsive]="chartOptions.responsive!"></apx-chart>
+            }@else {
+              <h2 class="font-semibold italic text-center ">No budgets found !!</h2>
+            }
             </div>
-            </app-card-item>
-            </div>
-            <!-- <app-budget-overview></app-budget-overview> -->
-        <!-- <div class="pb-5"> -->
-          <!-- <app-chart /> -->
-          <!-- <app-budget-card /> -->
-        <!-- </div> -->
-        <!-- <app-recurring-item /> -->
+        </app-card-item>
+      </div>
+      <!-- <app-budget-overview></app-budget-overview> -->
+      <!-- <div class="pb-5"> -->
+      <!-- <app-chart /> -->
+      <!-- <app-budget-card /> -->
+      <!-- </div> -->
+      <!-- <app-recurring-item /> -->
       <!-- </div> -->
     </div>
   </div>

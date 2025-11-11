@@ -13,7 +13,7 @@ import { BudgetCardComponent } from '../../features-components/budget-card/budge
 import { BudgetsService } from './budgets.service';
 import { BudgetFormComponent } from './budget-form/budget-form.component';
 import { Budget } from '../../features-components/budget-card/budget-card-model';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { PopUPComponent } from '../../features-components/pop-up/pop-up.component';
 import { ChartComponent } from "ng-apexcharts";
 
@@ -27,6 +27,7 @@ export type ChartOptions = {
   chart: ApexChart;
   responsive: ApexResponsive[];
   labels: any;
+  colors: string[];
 };
 
 @Component({
@@ -43,34 +44,33 @@ export type ChartOptions = {
   templateUrl: './budgets.component.html',
   styleUrl: './budgets.component.scss',
 })
-export class BudgetsComponent implements AfterViewInit, OnDestroy, OnInit {
+export class BudgetsComponent implements OnDestroy, OnInit {
 
-  sub!: Subscription;
+  sub = new Subscription();
   @ViewChild(BudgetFormComponent) budgetForm!: BudgetFormComponent;
   popUpVisibililty: boolean = false;
-  // @ViewChild(ChartComponent) donatChart!: ChartComponent;
-
   @ViewChild("chart") chart: ChartComponent = {} as ChartComponent;
-  public chartOptions: Partial<ChartOptions>= {
-      series: [44, 55, 13, 43, 22],
-      chart: {
-        type: "donut"
-      },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
+  public chartOptions: Partial<ChartOptions> = {
+    series: [],
+    colors: [],
+    chart: {
+      type: "donut"
+    },
+    labels: [],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
           }
         }
-      ]
-    };
+      }
+    ]
+  };
   budgetService = inject(BudgetsService);
   budgetList: Budget[] = [];
   private req: 'Edit' | 'Add' = 'Add';
@@ -78,17 +78,27 @@ export class BudgetsComponent implements AfterViewInit, OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.getBudgetList();
+    this.addChart();
+  }
+  addChart() {
+    this.sub.add(
+      this.budgetService.chartOptions.subscribe((options) => {
+        this.chartOptions.series = options.maxmumspends;
+        this.chartOptions.labels = options.labels;
+        this.chartOptions.colors = options.colors;
+      })
+    );
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-  ngAfterViewInit(): void {
-    this.addBudgetListToChart();
-  }
   getBudgetList() {
-    this.sub = this.budgetService.budgetList.subscribe((list) => {
-      this.budgetList = list;
-    });
+    this.sub.add(
+      this.budgetService.budgetList.subscribe((list) => {
+        this.budgetList = list;
+      })
+    )
+
   }
   manipulateBudget(budget: Budget, req: 'Edit') {
     this.req = req;
@@ -100,25 +110,10 @@ export class BudgetsComponent implements AfterViewInit, OnDestroy, OnInit {
       }, 1);
     }
   }
-  addBudgetListToChart() {
-    let maxmumspends: number[] = [];
-    let labels: string[] = [];
-    let colors: string[] = [];
-    this.budgetList.map((el) => {
-      maxmumspends.push(Number(el.maxmumSpend));
-      labels.push(el.title.title);
-      colors.push(el.theme.id);
-    });
-    // console.log(this.budgetList, 'Budget Liste Here ');
-    // this.chartOptions = {
-    //   series: maxmumspends,
-    //   labels: labels,
-    //   // colors: colors,
-    // }
-  }
+
   onRemove(budget: Budget) {
     this.budgetService.removeBudget(budget);
-    this.addBudgetListToChart();
+    // this.addBudgetListToChart();
   }
   onSubmitBudget(budget: Budget) {
     if (this.req == 'Edit') {
@@ -126,6 +121,6 @@ export class BudgetsComponent implements AfterViewInit, OnDestroy, OnInit {
     } else {
       this.budgetService.addBudget(budget);
     }
-    this.addBudgetListToChart();
+    // this.addBudgetListToChart();
   }
 }

@@ -20,8 +20,8 @@
   </app-pop-up>
   }
   <div class="rounded-lg" ngProjectAs="page">
-    <div class="grid grid-cols-2 gap-2">
-      <app-pot-card  [pot]="pot" *ngFor="let pot of getPots() | async" />
+    <div class="grid md:grid-cols-2 gap-2">
+      <app-pot-card  [pot]="pot" (edit)="onEditPot($event)" (remove)="onRemovePot($event)" *ngFor="let pot of getPots() | async" />
     </div>
   </div>
 </app-container>

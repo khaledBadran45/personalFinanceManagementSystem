@@ -41,13 +41,11 @@ export class BudgetCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.relatedTrs = this.getTransactions(this.budget.title);
-
     this.spent = this.relatedTrs.reduce(
       (prev, curr) => (prev += parseInt(curr.amount)),
       0
     );
     this.remaining = parseInt(this.budget.maxmumSpend) - this.spent;
-    
   }
 
   getTransactions(budget: Budget) {

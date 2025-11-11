@@ -9,57 +9,67 @@ import { TransactionsService } from '../transactions/transactions.service';
 import { Transaction } from '../../high-level-components/transactions/transactions.model';
 import { TransactionsListComponent } from "../../features-components/transactions-list/transactions-list.component";
 import { CardItemComponent } from "../../features-components/card-item/card-item.component";
-import { ChartComponent } from "../../low-level-components/chart/chart.component";
 import { PotsService } from '../pots/pots.service';
+import { ChartOptions } from '../budgets/budgets.component';
+import { ChartComponent } from "ng-apexcharts";
 @Component({
     selector: 'app-overview',
     imports: [
-        ListOfCardsComponent,
-        PotsComponent,
-        ContainerComponent,
-        TransactionsListComponent,
-        CardItemComponent,
-    ],
+    ListOfCardsComponent,
+    PotsComponent,
+    ContainerComponent,
+    TransactionsListComponent,
+    CardItemComponent,
+    ChartComponent
+],
     templateUrl: './overview.component.html',
     styleUrl: './overview.component.scss'
 })
-export class OverviewComponent implements OnInit, AfterViewInit {
+export class OverviewComponent implements OnInit {
     budgetService = inject(BudgetsService);
     potsService = inject(PotsService);
     transactionService = inject(TransactionsService);
-    sub!: Subscription;
+    sub = new Subscription();
     budgetList: Budget[] = [];
     trs: Transaction[] = [];
-    @ViewChild(ChartComponent) donatChart!: ChartComponent;
+    public chartOptions: Partial<ChartOptions> = {
+        series: [],
+        colors: [],
+        chart: {
+            type: "donut"
+        },
+        labels: [],
+        responsive: [
+            {
+                breakpoint: 200,
+                options: {
+                    chart: {
+                        width:"50px"
+                    },
+                    legend: {
+                        position: "bottom"
+                    }
+                }
+            }
+        ]
+    };
     constructor() { }
-    ngAfterViewInit(): void {
-        this.addBudgetListToChart();
-    }
-    ;
+    addBudgetChart(){
+      this.sub = this.budgetService.chartOptions.subscribe((options)=>{
+            this.chartOptions.series = options.maxmumspends;
+            this.chartOptions.labels = options.labels;
+            this.chartOptions.colors = options.colors;
+        });
+    };
     ngOnInit(): void {
+        this.addBudgetChart();
         this.getBudgetList();
         this.trs = this.transactionService.src.splice(0, 8);
 
     }
     getBudgetList() {
-        this.sub = this.budgetService.budgetList.subscribe((list) => {
+        this.sub = this.budgetService.budgetList.pipe(take(1)).subscribe((list) => {
             this.budgetList = list;
-        });
-    }
-    addBudgetListToChart() {
-        let maxmumspends: number[] = [];
-        let labels: string[] = [];
-        let colors: string[] = [];
-        this.budgetList.map((el) => {
-            maxmumspends.push(Number(el.maxmumSpend));
-            labels.push(el.title.title);
-            colors.push(el.theme.id);
-        });
-
-        this.donatChart.chart.updateOptions({
-            series: maxmumspends,
-            labels: labels,
-            colors: colors,
         });
     }
 }

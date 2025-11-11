@@ -31,9 +31,17 @@ export class PotsService {
       this.PotsSubject.next(updatedPots);
     }
   }
-  // removePot(pot: pot) {
-  //   localStorage.setItem('pots', JSON.stringify([...this.PotsSubject.getValue(), pot]));
-  //   this.PotsSubject.next([...this.PotsSubject.getValue(), pot]);
-  // } 
+  deletePot(pot: pot) {
+    console.log('Delete Pot FromThe Service pot');
+    const updatedPots = this.PotsSubject.getValue().filter((p) => p.name !== pot.name);
+    localStorage.setItem('pots', JSON.stringify(updatedPots));
+    this.PotsSubject.next(updatedPots);
+  }
+  editPot(updatedPot: pot) {    
+    const pots = this.PotsSubject.getValue();
+    const updatedPots = pots.map((p) => p.name === updatedPot.name ? updatedPot : p);
+    localStorage.setItem('pots', JSON.stringify(updatedPots));
+    this.PotsSubject.next(updatedPots);
+  }
 
 }

@@ -1,8 +1,29 @@
 <div class="card_wrapper bg-white py-3 px-5 m-2 rounded-xl">
   <div class="flex py-4 justify-between items-center">
     <app-card-title [cardTitle]="{ title: pot().name, id: pot().theme }" />
-    <div class="py-5">
-      <img src="ellipses.svg" />
+      <div class="py-5 relative">
+      <img
+        (click)="cardManipulation()"
+        class="cursor-pointer"
+        src="ellipses.svg"
+      />
+      <div
+        *ngIf="potManipulation"
+        class="bg-white border rounded-xl menu absolute top-10 right-0"
+      >
+        <li
+          (click)="editItem()"
+          class="w-32 list-none text-black text-sm border-blue-50 border-b p-3 cursor-pointer capitalize text-md font-light"
+        >
+          Edit budget
+        </li>
+        <li
+          (click)="deleteItem()"
+          class="w-32 list-none text-red-600 text-sm p-3 cursor-pointer capitalize text-md font-light"
+        >
+          Delete budget
+        </li>
+      </div>
     </div>
   </div>
   <!-- Total Saved , progress bar , Target -->

@@ -1,7 +1,7 @@
 <div class="dropdown mt-3">
   <h1
     *ngIf="this.dropdown().title"
-    class="text-xs hidden md:block capitalize font-bold tracking-wide pb-1 text-gray-700"
+    class="text-xs block capitalize font-bold tracking-wide pb-1 text-gray-700"
   >
     {{ dropdown().title }}
   </h1>
@@ -14,7 +14,7 @@
   <label
     (click)="this.control.markAsTouched()"
     [for]="'select-' + dropdown().id"
-    class="labelSelection tracking-wide hidden md:flex p-3"
+    class="labelSelection tracking-wide flex p-3"
   >
     <div class="selected">
       @if(control.value){

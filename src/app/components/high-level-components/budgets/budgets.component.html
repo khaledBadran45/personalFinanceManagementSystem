@@ -15,26 +15,21 @@
       <app-budget-form (closePopUp)="this.popUpVisibililty = false" (sub)="onSubmitBudget($event)" #budget />
     </app-pop-up>
     }
-    <!-- <div
-      buttonPopUP
-      (add)="onAdd($event)"
-      [popUpContent]="{
-        title: 'Budget',
-        desc: 'Choose a category to set a spending budget. These categories can help you monitor spending.'
-      }"
-    ></div> -->
   </div>
+  @if(budgetList.length){
   <div class="rounded-lg" ngProjectAs="page">
-    <div class="grid grid-cols-7 gap-5">
-      <div class="col-span-3">
-        <!-- <app-chart /> -->
-        <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [labels]="chartOptions.labels"
-          [responsive]="chartOptions.responsive!"></apx-chart>
+    <div class="grid grid-cols-7 justify-center gap-5">
+      <div class="md:col-span-3 col-span-full">
+        <apx-chart [colors]="chartOptions.colors!" [series]="chartOptions.series!" [chart]="chartOptions.chart!"
+          [labels]="chartOptions.labels" [responsive]="chartOptions.responsive!"></apx-chart>
       </div>
-      <div class="col-span-4 gap-5">
+      <div class="md:col-span-4 col-span-full gap-5">
         <app-budget-card (remove)="onRemove($event)" (edit)="manipulateBudget($event, 'Edit')" class="my-5"
           *ngFor="let budget of budgetList" [budget]="budget" />
       </div>
     </div>
   </div>
+  }@else{
+  <h2 class="font-semibold italic text-center ">No budgets found !!</h2>
+  }
 </app-container>
